@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:"><title>栖伴 · 任务中心</title><link rel="stylesheet" href="agent.css"><script defer src="agent-ui.js"></script></head>
+<body>
+<header><div class="logo">栖</div><div><strong>栖伴 <span>任务中心</span></strong><p>把想做的事，变成迈得出的一步。</p></div><button id="refresh" class="quiet">刷新</button></header>
+<main>
+<section class="hero"><div class="eyebrow">YOUR LITTLE EVERYDAY PARTNER</div><h1>事情一件件来，我陪你。</h1><p>整理目标、记下灵感，也留一点时间专心做事。</p><div class="stats"><div><b id="pending">0</b><span>待完成</span></div><div><b id="done">0</b><span>已完成</span></div><div><b id="runs">0</b><span>最近执行</span></div></div></section>
+<section class="card"><div class="section-heading"><h2>交给栖伴</h2><span class="tag">基础 Agent</span></div><form id="ask-form"><label for="request">说说你想做什么</label><textarea id="request" rows="2" maxlength="2000" placeholder="帮我把准备面试拆成几个步骤，再开始25分钟专注" required></textarea><div class="form-footer"><small>拆解与组合任务使用设置中的模型。</small><button id="send" type="submit">开始处理 ↗</button></div></form><div class="chips"><button data-prompt="今日总览">今日总览</button><button data-prompt="查看待办">查看待办</button><button data-prompt="帮我把本周学习计划拆成三个步骤，保存为待办">拆解学习计划</button></div><p id="reply" role="status" aria-live="polite">可直接说“添加待办：整理桌面”，离线也能使用。</p></section>
+<section class="card"><div class="section-heading"><h2>我的待办</h2><select id="filter" aria-label="筛选待办"><option value="pending">待完成</option><option value="all">全部</option><option value="done">已完成</option></select></div><form id="add-form" class="inline"><input id="task-title" aria-label="新待办" placeholder="记下一件要做的事…" maxlength="200" required><button type="submit">添加</button></form><div id="tasks"></div></section>
+<section class="card"><div class="section-heading"><h2>手动拆解</h2><span class="muted">无需连接模型</span></div><form id="plan-form"><input id="goal" aria-label="目标" placeholder="目标，例如：准备周五的汇报" maxlength="200" required><textarea id="steps" aria-label="计划步骤" rows="3" placeholder="每行一个具体步骤（2～8步）" required></textarea><button type="submit" class="quiet">保存为行动计划</button></form></section>
+<section class="card"><div class="section-heading"><h2>执行记录</h2><span class="muted">最近20条</span></div><div id="logs"></div></section>
+<footer>栖伴 a0.6 · 计划与记录保存在本机</footer>
+</main></body></html>

@@ -1,0 +1,10 @@
+node_modules/
+qa/
+**/node_modules/
+**/__pycache__/
+*.log
+*.pyc
+*.tmp
+*.bak
+.DS_Store
+

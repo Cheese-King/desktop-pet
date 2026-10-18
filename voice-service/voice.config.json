@@ -1,0 +1,14 @@
+{
+  "gptSovitsRoot": "../../GPT-SoVITS-v2pro-20250604-nvidia50",
+  "ttsConfig": "tts_infer.yaml",
+  "server": {
+    "host": "127.0.0.1",
+    "port": 9880
+  },
+  "profile": {
+    "name": "早见1",
+    "referenceAudio": "output/slicer_opt/7月8日(1)-1.mp3_0000004480_0000126400.wav",
+    "referenceText": "みんなで素敵な思い出を作れたらって",
+    "referenceLanguage": "ja"
+  }
+}

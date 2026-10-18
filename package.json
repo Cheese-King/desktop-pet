@@ -1,0 +1,16 @@
+{
+  "name": "desktop-pet",
+  "version": "0.7.0",
+  "private": true,
+  "description": "栖伴 · 桌面陪伴与轻量任务助手",
+  "author": "desktop-pet",
+  "main": "out/main/index.js",
+  "dependencies": {
+    "docx": "^9.11.0",
+    "electron-store": "^8.2.0",
+    "mammoth": "^1.13.0",
+    "nodemailer": "^10.1.1",
+    "pdf-parse": "^1.1.1"
+  },
+  "productName": "栖伴"
+}

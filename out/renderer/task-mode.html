@@ -1,0 +1,39 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; frame-src 'self'"><title>栖伴 · 任务模式</title><link rel="stylesheet" href="task-mode.css"><script defer src="task-mode.js"></script></head><body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><span class="logo" aria-hidden="true">栖</span><div><b>栖伴</b><small>任务模式</small></div></div>
+  <form id="add-form" class="new-task"><input id="task-title" placeholder="新建任务，回车创建" maxlength="200" required aria-label="新任务名称"><button class="icon-btn primary" aria-label="创建任务" title="创建任务">＋</button></form>
+  <div class="segmented" role="tablist" aria-label="任务筛选">
+    <button role="tab" data-filter="pending" aria-selected="true">进行中 <span id="count-pending"></span></button>
+    <button role="tab" data-filter="done" aria-selected="false">已完成 <span id="count-done"></span></button>
+    <button role="tab" data-filter="all" aria-selected="false">全部</button>
+  </div>
+  <nav id="tasks" aria-label="任务列表"></nav>
+  <div class="sidebar-foot"><button id="settings" class="ghost">⚙ 对话设置</button><button id="mail-settings" class="ghost">✉ 邮箱设置</button></div>
+</aside>
+<main class="work">
+  <header class="heading">
+    <div class="title-wrap"><h1 id="current-title">开始一项新任务</h1><div class="meta"><span id="task-status" class="pill"></span><span id="context-info"></span></div></div>
+    <div class="actions"><button id="toggle-task" class="soft">✓ 标记完成</button><button id="delete-task" class="icon-btn danger" title="删除任务" aria-label="删除任务">🗑</button><button id="toggle-side" class="icon-btn" title="显示/隐藏侧栏" aria-label="显示或隐藏侧栏" aria-expanded="true">◨</button></div>
+  </header>
+  <section id="messages" aria-live="polite"></section>
+  <div id="drafts" hidden></div>
+  <form id="ask-form" class="composer">
+    <div class="chips"><button type="button" data-prompt="请阅读导入的文件，整理主要内容并生成一份Word总结。">整理文件</button><button type="button" data-prompt="请将最新成果作为附件，发到默认邮箱。先准备邮件给我检查。">成果发邮箱</button><button type="button" data-prompt="请列出这个任务的具体操作步骤。">梳理步骤</button></div>
+    <div class="input-box">
+      <button type="button" id="import" class="icon-btn" title="导入文件" aria-label="导入文件">📎</button>
+      <textarea id="request" rows="1" maxlength="2000" placeholder="交代任务要求，Enter 发送，Shift+Enter 换行" required aria-label="任务要求"></textarea>
+      <button id="send" class="send" aria-label="发送">↑</button>
+    </div>
+    <small id="reply" role="status">先新建或选择一项任务。</small>
+  </form>
+</main>
+<aside class="side" id="side">
+  <div class="pet"><iframe id="pet-frame" src="index.html?taskPet=1" title="栖伴Live2D角色"></iframe><small id="pet-status">角色加载中…</small></div>
+  <section class="card"><div class="card-head"><h2>文件与成果</h2><button id="import-side" class="link">＋ 导入</button></div><div id="files"></div><p class="hint">支持 TXT / MD / CSV / JSON / Word / 文字 PDF，单个 10MB、6 万字以内。处理时文字会提交给你配置的对话服务。</p></section>
+  <details class="card"><summary><h2>执行记录</h2></summary><div id="logs"></div></details>
+</aside>
+</div>
+<dialog id="mail-dialog"><form id="mail-form"><div class="dialog-head"><h2>邮箱设置</h2><button type="button" id="close-mail" class="icon-btn" aria-label="关闭">✕</button></div><p class="hint">可以先只保存收件邮箱。实际发送前，再补充支持 SMTP 的发件邮箱和授权码；可用同一个邮箱收发。</p><label>默认收件邮箱<input id="mail-recipient" type="email"></label><div class="grid2"><label>发件邮箱<input id="mail-user" type="email"></label><label>SMTP 服务器<input id="mail-host" placeholder="例如 smtp.qq.com"></label></div><div class="grid2"><label>端口<input id="mail-port" type="number" value="465" min="1" max="65535" required></label><label>邮箱授权码<input id="mail-password" type="password" autocomplete="new-password" placeholder="留空保留已保存授权码"></label></div><label class="check"><input id="mail-secure" type="checkbox" checked> SSL / TLS（465）；587 端口取消勾选，使用 STARTTLS</label><small class="hint">授权码在本机加密保存，不会提供给对话模型。</small><p id="mail-status" role="status"></p><div class="dialog-foot"><button class="primary">保存设置</button></div></form></dialog>
+<dialog id="send-dialog"><div class="dialog-head"><h2>确认发送邮件</h2></div><p id="send-recipient"></p><strong id="send-subject"></strong><pre id="send-body"></pre><p id="send-attachments"></p><p class="hint">确认后通过你的发件邮箱发送。</p><div class="dialog-foot"><button id="cancel-send" class="soft">返回修改</button><button id="confirm-send" class="primary">确认发送</button></div></dialog>
+</body></html>
